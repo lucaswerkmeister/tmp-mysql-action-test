@@ -1,0 +1,15 @@
+name: Test T417382
+on:
+  push:
+
+jobs:
+  test:
+    steps:
+    - uses: actions/checkout@v3
+    - uses: mirromutth/mysql-action@v1.1
+      with:
+        mysql version: '5.7'
+        mysql database: 'test_db_wiki'
+        mysql root password: 'root'
+    - run: |
+        mysql -uroot -proot test_db_wiki <<< 'SELECT 1;'
